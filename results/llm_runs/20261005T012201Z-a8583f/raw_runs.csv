@@ -1,0 +1,66 @@
+admissible,candidate_code,candidate_code_hash,candidate_id,code_complexity,consistent,estimated_cost_usd,failure_category,failure_message,generation,llm_calls,llm_done_reason,llm_error_type,llm_input_tokens,llm_latency_s,llm_output_tokens,llm_retry_count,llm_success,max_consistency_violation,max_overestimate,model,model_version,parent_id,seed,setting,status,temperature,test_mean_expansions,test_mean_runtime_ms,test_mean_solution_cost,test_n,test_solved,timestamp,total_tokens,train_mean_expansions,train_mean_runtime_ms,train_mean_solution_cost,train_solved
+1,"def heuristic(state):
+    return 0.0
+",e7e0d5bdd4e4d74c,zero-s1,6,1,0.0,,,0,0,,,,,,,,0.0,0.0,hand-coded,hand-coded,,1,zero,valid,,577.375,2.019524996285327,10,8,8,2026-10-05T01:22:03.564526+00:00,0,262.25,0.860337502672337,8,8
+1,"def heuristic(state):
+    goal=(1,2,3,4,5,6,7,8,0)
+    return float(sum(1 for i,x in enumerate(state) if x and x != goal[i]))
+",fa719c31c63b89d2,misplaced-s1,53,1,0.0,,,0,0,,,,,,,,0.0,0.0,hand-coded,hand-coded,,1,misplaced,valid,,33.375,0.10646248119883239,10,8,8,2026-10-05T01:22:04.856082+00:00,0,16.375,0.05744998634327203,8,8
+1,"def heuristic(state):
+    goal=(1,2,3,4,5,6,7,8,0)
+    total=0
+    for i,x in enumerate(state):
+        if x:
+            j=goal.index(x); total += abs(i//3-j//3)+abs(i%3-j%3)
+    return float(total)
+",80cc4a976754ebbf,manhattan-s1,89,1,0.0,,,0,0,,,,,,,,0.0,0.0,hand-coded,hand-coded,,1,manhattan,valid,,15.5,0.04609998723026365,10,8,8,2026-10-05T01:22:06.366177+00:00,0,11.625,0.03942500916309655,8,8
+0,"def heuristic(state):
+    goal=(1,2,3,4,5,6,7,8,0)
+    total=0
+    for i,x in enumerate(state):
+        if x:
+            j=goal.index(x); total += abs(i//3-j//3)+abs(i%3-j%3)
+    conflicts=0
+    for row in range(3):
+        vals=[]
+        for col in range(3):
+            x=state[3*row+col]
+            if x and goal.index(x)//3==row: vals.append(goal.index(x)%3)
+        conflicts += sum(vals[i]>vals[j] for i in range(len(vals)) for j in range(i+1,len(vals)))
+    for col in range(3):
+        vals=[]
+        for row in range(3):
+            x=state[3*row+col]
+            if x and goal.index(x)%3==col: vals.append(goal.index(x)//3)
+        conflicts += sum(vals[i]>vals[j] for i in range(len(vals)) for j in range(i+1,len(vals)))
+    return float(total + 2*conflicts)
+",3a66081a0ded73ca,linear_conflict-s1,338,0,0.0,inadmissible,inadmissible,0,0,,,,,,,,2.0,4.0,hand-coded,hand-coded,,1,linear_conflict,inadmissible,,,,,8,,2026-10-05T01:22:07.986203+00:00,0,,,,
+0,"def heuristic(state):
+    # Calculate the Manhattan distance from each tile to its goal position
+    goal = (1, 2, 3, 4, 5, 6, 7, 8, 0)
+    total = 0
+    for i in range(9):
+        # Find the current position of the tile (if not blank)
+        if state[i] != 0:
+            # Compute the goal position for this tile
+            goal_pos = goal[i] - 1  # Adjust for 0-indexed goal positions
+            # Calculate Manhattan distance
+            current_row = i // 3
+            current_col = i % 3
+            goal_row = goal_pos //  3
+            goal_col = goal_pos % 3
+            total += abs(current_row - goal_row) + abs(current_col - goal_col)
+    return total
+
+# Explanation: This heuristic uses the Manhattan distance for each numbered tile (excluding the blank) to the goal position. 
+# It is admissible and consistent because the Manhattan distance is a well-known admissible and consistent heuristic for the 8-puzzle.",20d625d6968cbabf,oneshot-s1-g0-0,110,0,0.0,inadmissible,inadmissible,0,1,length,,248,92.62651658058167,700,0,True,2.0,2.0,qwen3:4b,qwen3:4b,,1,one_shot_llm,inadmissible,0.2,,,,8,,2026-10-05T01:23:43.450376+00:00,948,,,,
+1,"def heuristic(state):
+    goal=(1,2,3,4,5,6,7,8,0)
+    m=0
+    for i,x in enumerate(state):
+        if x:
+            j=goal.index(x); m += abs(i//3-j//3)+abs(i%3-j%3)
+    misplaced=sum(1 for i,x in enumerate(state) if x and x != goal[i])
+    return 0.608679742693*m + 0.197557060308*misplaced + 0.193763196999*0.0
+",5768fa1c6f9e68e7,random-s1-g0-0,136,1,0.0,,,0,0,,,,,,,,0.0,0.0,random-generator,random-generator,,1,random_evolution_final,valid,,21.75,0.06519998714793473,10,8,8,2026-10-05T01:23:44.924718+00:00,0,13.25,0.044687476474791765,8,8
+,,,,,,,,,0,0,,,,,,,,,,,,,1,llm_evolution_final,no_valid_candidate,,,,,8,,,,,,,

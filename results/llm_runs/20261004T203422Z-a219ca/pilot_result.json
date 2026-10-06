@@ -1,0 +1,6 @@
+{
+  "status": "pilot_failed",
+  "llm_status": false,
+  "model": "qwen3:4b",
+  "error": "RuntimeError: TimeoutError: timed out"
+}

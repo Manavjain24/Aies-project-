@@ -1,0 +1,82 @@
+admissible,candidate_code,candidate_code_hash,candidate_id,code_complexity,consistent,counterexample,estimated_cost_usd,failure_category,failure_message,generation,llm_calls,llm_done_reason,llm_error_type,llm_input_tokens,llm_latency_s,llm_output_tokens,llm_retry_count,llm_success,max_consistency_violation,max_overestimate,model,model_version,parent_id,seed,setting,status,task,temperature,test_mean_expansions,test_mean_runtime_ms,test_mean_solution_cost,test_n,test_solved,timestamp,total_tokens,train_mean_expansions,train_mean_runtime_ms,train_mean_solution_cost,train_solved
+1,"def heuristic(state):
+    return 0.0
+",e7e0d5bdd4e4d74c,zero-s1,6,1,,0.0,,,0,0,,,,,,,,0.0,0.0,hand-coded,hand-coded,,1,zero,valid,,,577.375,1.9430499814916402,10,8,8,2026-10-05T01:36:43.121137+00:00,0,262.25,0.8598500280641019,8,8
+1,"def heuristic(state):
+    goal=(1,2,3,4,5,6,7,8,0)
+    return float(sum(1 for i,x in enumerate(state) if x and x != goal[i]))
+",fa719c31c63b89d2,misplaced-s1,53,1,,0.0,,,0,0,,,,,,,,0.0,0.0,hand-coded,hand-coded,,1,misplaced,valid,,,33.375,0.10296248365193605,10,8,8,2026-10-05T01:36:44.337043+00:00,0,16.375,0.05638749280478805,8,8
+1,"def heuristic(state):
+    goal=(1,2,3,4,5,6,7,8,0)
+    total=0
+    for i,x in enumerate(state):
+        if x:
+            j=goal.index(x); total += abs(i//3-j//3)+abs(i%3-j%3)
+    return float(total)
+",80cc4a976754ebbf,manhattan-s1,89,1,,0.0,,,0,0,,,,,,,,0.0,0.0,hand-coded,hand-coded,,1,manhattan,valid,,,15.5,0.08529998012818396,10,8,8,2026-10-05T01:36:45.715852+00:00,0,11.625,0.0703999976394698,8,8
+0,"def heuristic(state):
+    goal=(1,2,3,4,5,6,7,8,0)
+    total=0
+    for i,x in enumerate(state):
+        if x:
+            j=goal.index(x); total += abs(i//3-j//3)+abs(i%3-j%3)
+    conflicts=0
+    for row in range(3):
+        vals=[]
+        for col in range(3):
+            x=state[3*row+col]
+            if x and goal.index(x)//3==row: vals.append(goal.index(x)%3)
+        conflicts += sum(vals[i]>vals[j] for i in range(len(vals)) for j in range(i+1,len(vals)))
+    for col in range(3):
+        vals=[]
+        for row in range(3):
+            x=state[3*row+col]
+            if x and goal.index(x)%3==col: vals.append(goal.index(x)//3)
+        conflicts += sum(vals[i]>vals[j] for i in range(len(vals)) for j in range(i+1,len(vals)))
+    return float(total + 2*conflicts)
+",3a66081a0ded73ca,linear_conflict-s1,338,0,"{'state': [0, 8, 7, 6, 5, 4, 3, 2, 1], 'h': 32.0, 'true_distance': 28}",0.0,inadmissible,inadmissible,0,0,,,,,,,,2.0,4.0,hand-coded,hand-coded,,1,linear_conflict,inadmissible,,,,,,8,,2026-10-05T01:36:47.281758+00:00,0,,,,
+0,"def heuristic(state):
+    # Calculate the Manhattan distance of each tile to its goal position
+    # Goal positions: [1,2,3,4,5,6,7,8,0]
+    goal_positions = [1, 2, 3, 4, 5, 6, 7, 8, 0]
+    total = 0
+    for i in range(9):
+        # Find the current position of the tile that should be at position i in goal
+        tile = goal_positions[i]
+        # Get current index of tile in state
+        current_index = state.index(tile)
+        # Calculate Manhattan distance from current position to goal position
+        # Goal position is i (0-indexed)
+        # Current position is current_index
+        total += abs(i - current_index)
+    return total
+
+# Explanation: This heuristic uses the Manhattan distance for each tile from its current position to its goal position in the 8-puzzle. 
+# It is admissible because the Manhattan distance is a lower bound on the number of moves required. 
+# It is consistent because the Manhattan distance changes by at most 1 when moving a tile to an adjacent position.",7e603a5796e585ab,oneshot-s1-g0-0,64,0,"{'state': [5, 8, 0, 1, 7, 2, 4, 6, 3], 'h': 36.0, 'true_distance': 14}",0.0,inadmissible,inadmissible,0,1,stop,,248,32.516894817352295,248,0,True,5.0,22.0,qwen3:4b,qwen3:4b,,1,one_shot_llm,inadmissible,generate,0.2,,,,8,,2026-10-05T01:37:22.389353+00:00,496,,,,
+1,"def heuristic(state):
+    goal=(1,2,3,4,5,6,7,8,0)
+    m=0
+    for i,x in enumerate(state):
+        if x:
+            j=goal.index(x); m += abs(i//3-j//3)+abs(i%3-j%3)
+    misplaced=sum(1 for i,x in enumerate(state) if x and x != goal[i])
+    return 0.608679742693*m + 0.197557060308*misplaced + 0.193763196999*0.0
+",5768fa1c6f9e68e7,random-s1-g0-0,136,1,,0.0,,,1,0,,,,,,,,0.0,0.0,random-generator,random-generator,,1,random_evolution_final,valid,,,21.75,0.06576252053491771,10,8,8,2026-10-05T01:37:23.871224+00:00,0,13.25,0.0442875170847401,8,8
+1,"def heuristic(state):
+    goal = (1, 2, 3, 4, 5, 6, 7, 8, 0)
+    total = 0
+    for idx, tile in enumerate(state):
+        if tile == 0:
+            continue
+        goal_idx = goal.index(tile)
+        x1 = idx % 3
+        y1 = idx // 3
+        x2 = goal_idx % 3
+        y2 = goal_idx // 3
+        total += abs(x1 - x2) + abs(y1 - y2)
+    return total
+
+# Explanation: This heuristic calculates the Manhattan distance for each numbered tile from its current position to its goal position in the 8-puzzle grid. 
+# It is admissible and consistent as it provides a lower bound on the number of moves required and the change in heuristic value is at most the move cost. 
+# The implementation is efficient (O(n)) and avoids unnecessary computations by directly using the state tuple.",8c752894fdb5cbd3,llm-s1-g1-3,110,1,,0.0,,,1,1,stop,,625,25.258655071258545,212,0,True,0.0,0.0,qwen3:4b,qwen3:4b,llm-s1-g0-0,1,llm_evolution_final,valid,improve,0.2,15.5,0.04556249768938869,10,8,8,2026-10-05T01:43:23.214805+00:00,837,11.625,0.038612502976320684,8,8

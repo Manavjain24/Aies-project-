@@ -1,0 +1,43 @@
+{
+  "llm_evolution_vs_manhattan_test_expansions": {
+    "n": 0,
+    "statistic": null,
+    "p_value": null,
+    "effect_size_rank_biserial": null,
+    "pairs_used_seeds": [],
+    "seeds_requested": [
+      1
+    ],
+    "note": "no seed has both a valid LLM-evolution final candidate and a valid Manhattan baseline"
+  },
+  "status": "executed",
+  "reduced_run": true,
+  "effective_run": {
+    "seeds": [
+      1
+    ],
+    "population_size": 1,
+    "generations": 0,
+    "max_llm_calls": 2,
+    "planned_llm_calls": 2,
+    "reduced_run": true
+  },
+  "llm_usage": {
+    "calls": 2,
+    "successes": 2,
+    "failures": 0,
+    "retries": 0,
+    "input_tokens": 496,
+    "output_tokens": 1400,
+    "total_tokens": 1896,
+    "successful_calls_with_unknown_tokens": 0,
+    "latency_s": 173.4112696647644,
+    "provider": "ollama-local",
+    "model": "qwen3:4b",
+    "model_version": "qwen3:4b",
+    "max_llm_calls": 2,
+    "cost_note": "estimated_monetary_cost_usd is 0.0 for local inference only as 'no provider charge'; local compute is not priced.",
+    "tokens_note": "token sums include only successful calls with reported counts; unknown counts are null, not 0."
+  },
+  "note": "Results here come from real LLM calls only; offline surrogate (experiment.py) results are separate."
+}

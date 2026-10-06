@@ -1,0 +1,46 @@
+{
+  "status": "pilot_complete",
+  "llm_status": true,
+  "model": "qwen3:4b",
+  "provider": "ollama-local",
+  "candidate_status": "inadmissible",
+  "candidate_correctness": {
+    "status": "inadmissible",
+    "message": "h exceeds true distance by up to 14.0",
+    "states_tested": 4767,
+    "scope": "PARTIAL smoke test: all 4767 states within BFS depth <= 14 of goal (not exhaustive; passing is NOT a correctness proof)",
+    "goal_value": 14.0,
+    "max_overestimate": 14.0,
+    "max_consistency_violation": 0.0
+  },
+  "elapsed_seconds": 28.159,
+  "tokens": 311,
+  "input_tokens": 159,
+  "output_tokens": 152,
+  "retries": 0,
+  "error_type": null,
+  "error": null,
+  "pipeline_ok": true,
+  "candidate_accepted": false,
+  "pilot_note": "Plumbing check only (the pilot prompt instructs Manhattan distance). This is NOT an experimental result. The candidate was REJECTED by the correctness gate (this is the gate working, not a pipeline failure).",
+  "endpoint": "http://localhost:11434/api/chat",
+  "endpoint_check": {
+    "checked": true,
+    "reachable": true,
+    "model_available": true,
+    "url": "http://localhost:11434/api/tags"
+  },
+  "seed": 1,
+  "llm_latency_s": 25.71,
+  "done_reason": "stop",
+  "response_preview": "```python\ndef heuristic(state):\n    goal = (1, 2, 3, 4, 5, 6, 7, 8, 0)\n    total = 0.0\n    for i in range(9):\n        if state[i] == 0:\n            continue\n        goal_index = goal.index(state[i]) - 1  # goal has 0 at end, so index 8 is 0\n        current_row = i // 3\n        current_col = i % 3\n        goal_row = goal_index // 3\n        goal_col = goal_index % 3\n        total += abs(current_row - goal_row) + abs(current_col - goal_col)\n    return total",
+  "extracted_code": "def heuristic(state):\n    goal = (1, 2, 3, 4, 5, 6, 7, 8, 0)\n    total = 0.0\n    for i in range(9):\n        if state[i] == 0:\n            continue\n        goal_index = goal.index(state[i]) - 1  # goal has 0 at end, so index 8 is 0\n        current_row = i // 3\n        current_col = i % 3\n        goal_row = goal_index // 3\n        goal_col = goal_index % 3\n        total += abs(current_row - goal_row) + abs(current_col - goal_col)\n    return total",
+  "validation": {
+    "status": "valid",
+    "message": ""
+  },
+  "candidate_rejection": {
+    "gate": "inadmissible",
+    "detail": "h exceeds true distance by up to 14.0"
+  }
+}

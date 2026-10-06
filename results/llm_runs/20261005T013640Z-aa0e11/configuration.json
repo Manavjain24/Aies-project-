@@ -1,0 +1,47 @@
+{
+  "llm": {
+    "provider": "ollama-local",
+    "base_url": "http://localhost:11434/v1",
+    "base_url_env": "LLM_BASE_URL",
+    "model": "qwen3:4b",
+    "model_env": "LLM_MODEL",
+    "model_version": "qwen3:4b",
+    "temperature": 0.2,
+    "max_output_tokens": 700,
+    "request_timeout_s": 300,
+    "disable_thinking": true
+  },
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "population_size": 8,
+  "generations": 4,
+  "train_n": 8,
+  "test_n": 8,
+  "train_depth": 8,
+  "test_depth": 10,
+  "candidate_timeout_s": 10,
+  "diversity_preservation": true,
+  "effective_run": {
+    "seeds": [
+      1
+    ],
+    "population_size": 4,
+    "generations": 1,
+    "max_llm_calls": 9,
+    "planned_llm_calls": 9,
+    "reduced_run": true,
+    "prompt_version": "8puzzle-llm-v2",
+    "system_prompt": "You are a code generator. Do not think out loud, do not restate the problem, and do not analyse. Your reply must begin immediately with a ```python code block. /no_think",
+    "assistant_prefill": "```python\n",
+    "stop_sequences": [
+      "\n```"
+    ],
+    "max_output_tokens": 700,
+    "temperature": 0.2
+  }
+}

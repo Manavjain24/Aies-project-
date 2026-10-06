@@ -1,0 +1,28 @@
+{
+  "status": "pilot_failed",
+  "llm_status": true,
+  "model": "qwen3:4b",
+  "provider": "ollama-local",
+  "candidate_status": "no_code_extracted",
+  "candidate_correctness": null,
+  "elapsed_seconds": 42.823,
+  "tokens": 346,
+  "input_tokens": 96,
+  "output_tokens": 250,
+  "retries": 0,
+  "error_type": "no_code_extracted",
+  "error": "no Python code could be extracted from the response",
+  "pilot_note": "Plumbing check only (the pilot prompt instructs Manhattan distance). This is NOT an experimental result.",
+  "endpoint": "http://localhost:11434/api/chat",
+  "endpoint_check": {
+    "checked": true,
+    "reachable": true,
+    "model_available": true,
+    "url": "http://localhost:11434/api/tags"
+  },
+  "seed": 1,
+  "llm_latency_s": 40.718,
+  "done_reason": "length",
+  "response_preview": "We are given a state: a tuple of 9 elements (0-indexed: 0 is blank, 1..8 are the tiles)\n Goal state: (1,2,3,4,5,6,7,8,0) -> but note: the goal for the puzzle is usually arranged as:\n   [1,2,3]\n   [4,5,6]\n   [7,8,0]   -> but in the problem, the goal is given as (1,2,3,4,5,6,7,8,0) meaning:\n        index0: 1, index1: 2, index2: 3, index3: 4, index4: 5, index5: 6, index6: 7, index7: 8, index8: 0\n\n However, note: the problem says \"goal is (1,2,3,4,5,1,2,3,4,5,6,7,8,0)\" -> wait, no, it says length-9 tuple: (1,2,3,4,5,6,7,8,0)\n\n So the",
+  "extracted_code": ""
+}

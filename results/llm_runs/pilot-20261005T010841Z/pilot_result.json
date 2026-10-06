@@ -1,0 +1,28 @@
+{
+  "status": "pilot_failed",
+  "llm_status": true,
+  "model": "qwen3:4b",
+  "provider": "ollama-local",
+  "candidate_status": "no_code_extracted",
+  "candidate_correctness": null,
+  "elapsed_seconds": 58.428,
+  "tokens": 553,
+  "input_tokens": 153,
+  "output_tokens": 400,
+  "retries": 0,
+  "error_type": "no_code_extracted",
+  "error": "no Python code could be extracted; the response was TRUNCATED by the output-token limit (400) - the model produced prose instead of code. Raise pilot_max_output_tokens or inspect response_preview.",
+  "pilot_note": "Plumbing check only (the pilot prompt instructs Manhattan distance). This is NOT an experimental result.",
+  "endpoint": "http://localhost:11434/api/chat",
+  "endpoint_check": {
+    "checked": true,
+    "reachable": true,
+    "model_available": true,
+    "url": "http://localhost:11434/api/tags"
+  },
+  "seed": 1,
+  "llm_latency_s": 56.366,
+  "done_reason": "length",
+  "response_preview": "Okay, let's see. I need to write a heuristic function for the 8-puzzle problem. The function takes a state, which is a tuple of 9 elements (row-major order), where 0 is the blank. The goal state is (1,2,3,4,5,6,7,8,0). The heuristic should return the sum for tiles 1 through 8 of the absolute difference in rows and columns from their goal positions.\n\nFirst, I need to figure out the goal positions for each tile. The goal state is (1,2,3,4,5,6,7,8,0), so the positions are:\n\nFor tile 1: position 0 (since it's row-major, index 0 is first)\nWait, no. Wait, the state is a tuple of 9 elements. Let's think about the 3x3 grid.\n\nIn row-major order, the grid is:\n\nRow 0: positions 0, 1, 2\n\nRow 1: positions 3, 4, 5\n\nRow 2: positions 6, 7, 8\n\nSo the goal state is (1,2,3,4,5,6,7,8,0). Wait, no, the goal state is (1,2,3,4,5,6,7,8,0) as a tuple. Wait, the problem says \"goal is (1,2,3,4,5,6,7,8,0)\".\n\nWait, the goal state has the numbers 1-8 in order, then 0. So in the grid:\n\nRow 0: 1, 2, 3\n\nRow 1: 4, 5, 6",
+  "extracted_code": ""
+}

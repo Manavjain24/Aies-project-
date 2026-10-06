@@ -1,0 +1,52 @@
+{
+  "llm_evolution_vs_manhattan_test_expansions": {
+    "n": 0,
+    "statistic": 0.0,
+    "p_value": 1.0,
+    "effect_size_rank_biserial": 0.0,
+    "pairs_used_seeds": [
+      1
+    ],
+    "seeds_requested": [
+      1
+    ]
+  },
+  "status": "executed",
+  "reduced_run": true,
+  "effective_run": {
+    "seeds": [
+      1
+    ],
+    "population_size": 4,
+    "generations": 1,
+    "max_llm_calls": 9,
+    "planned_llm_calls": 9,
+    "reduced_run": true,
+    "prompt_version": "8puzzle-llm-v2",
+    "system_prompt": "You are a code generator. Do not think out loud, do not restate the problem, and do not analyse. Your reply must begin immediately with a ```python code block. /no_think",
+    "assistant_prefill": "```python\n",
+    "stop_sequences": [
+      "\n```"
+    ],
+    "max_output_tokens": 700,
+    "temperature": 0.2
+  },
+  "llm_usage": {
+    "calls": 9,
+    "successes": 9,
+    "failures": 0,
+    "retries": 0,
+    "input_tokens": 3740,
+    "output_tokens": 3053,
+    "total_tokens": 6793,
+    "successful_calls_with_unknown_tokens": 0,
+    "latency_s": 368.4772274494171,
+    "provider": "ollama-local",
+    "model": "qwen3:4b",
+    "model_version": "qwen3:4b",
+    "max_llm_calls": 9,
+    "cost_note": "estimated_monetary_cost_usd is 0.0 for local inference only as 'no provider charge'; local compute is not priced.",
+    "tokens_note": "token sums include only successful calls with reported counts; unknown counts are null, not 0."
+  },
+  "note": "Results here come from real LLM calls only; offline surrogate (experiment.py) results are separate."
+}

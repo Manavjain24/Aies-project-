@@ -1,0 +1,8 @@
+setting,n_seeds,n_valid,test_expansions_mean,test_expansions_sd,test_runtime_ms_mean,test_runtime_ms_sd,total_tokens_mean,total_tokens_sd,solved_rate,admissibility_rate,consistency_rate,llm_calls,estimated_cost_usd
+linear_conflict,1,0,,,,,0.0,0.0,0.0,0,0,0,0
+llm_evolution_final,1,0,,,,,,,0.0,0,0,0,0
+manhattan,1,1,15.5,0.0,0.04609998723026365,0.0,0.0,0.0,1.0,1,1,0,0
+misplaced,1,1,33.375,0.0,0.10646248119883239,0.0,0.0,0.0,1.0,1,1,0,0
+one_shot_llm,1,0,,,,,948.0,0.0,0.0,0,0,1,0
+random_evolution_final,1,1,21.75,0.0,0.06519998714793473,0.0,0.0,0.0,1.0,1,1,0,0
+zero,1,1,577.375,0.0,2.019524996285327,0.0,0.0,0.0,1.0,1,1,0,0
